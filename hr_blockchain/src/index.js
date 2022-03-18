@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import App from './App';
+import Layout from "./Pages/Layout";
+import CreateEmployee from "./Employee/CreateEmployee";
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+
+        {/* Create Home Route */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<App />} />
+        </Route>
+
+        {/* Create Home Route */}
+          <Route path="/add-employee" element={<Layout />}>
+        <Route index element={<CreateEmployee />} />
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

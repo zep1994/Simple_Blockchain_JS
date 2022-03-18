@@ -31,8 +31,8 @@ class BlockChain {
 
 const Ledger = new BlockChain()
 
-Ledger.addBlock({sender: "Thomas", receiver: "Eric", amount: 2403})
-Ledger.addBlock({sender: "Wes", receiver: "Tim", amount: 203})
-Ledger.addBlock({sender: "Tom", receiver: "Jim", amount: 2099403})
+Ledger.addBlock({FirstName: "Thomas", LasttName: "Eric", Amount: 2403})
+Ledger.addBlock({FirstName: "Wes", LasttName: "Tim", Amount: 203})
+Ledger.addBlock({FirstName: "Tom", LasttName: "Jim", Amount: 2099403})
 
 console.log(JSON.stringify(Ledger, null, 6))
