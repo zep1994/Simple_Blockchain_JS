@@ -34,7 +34,7 @@ class CreateEmployee extends Component {
         return (
             <div className="App">
                 <h1 className="Title">Create Employee</h1>  
-                    <form onSubmit={this.handleSubmit}>
+                    <form method="POST" action="/employee" onSubmit={this.handleSubmit}>
                         <input type="text" name="FirstName" onChange={this.handleChange} placeholder="First Name" />
                         <br />
                         <input type="text" name="Last Name" onChange={this.handleChange} placeholder='Last Name' />

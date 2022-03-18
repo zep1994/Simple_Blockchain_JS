@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import Layout from "./Pages/Layout";
 import CreateEmployee from "./Employee/CreateEmployee";
+import Employee from './Employee/Employee';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -18,8 +19,13 @@ ReactDOM.render(
         </Route>
 
         {/* Create Home Route */}
-          <Route path="/add-employee" element={<Layout />}>
-        <Route index element={<CreateEmployee />} />
+        <Route path="/add-employee" element={<Layout />}>
+          <Route index element={<CreateEmployee />} />
+        </Route>
+
+         {/* Create Employee Route */}
+        <Route path="/employee" element={<Layout />}>
+          <Route index element={<Employee />} />
         </Route>
 
       </Routes>
