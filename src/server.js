@@ -12,12 +12,10 @@ app.listen(port, () => console.log(`Listening on port ${port}`))
 // Create Home Route
 app.use('/add-employee', (req, res, next) => { 
     res.send({ FirstName: res.FirstName, LastName: res.LastName, Amount: res.Amount })
-
-    next()
 })
 
 app.use('/employee', (req, res) => {
-    console.log(res.body)
+    console.log(req.body)
     res.redirect('/')
 })
 
