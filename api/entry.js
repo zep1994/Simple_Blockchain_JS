@@ -1,19 +1,4 @@
-const bcrypt = require('bcrypt')
-
-class Block {
-
-    constructor(blockid, previousHash, data) {
-        this.blockid = blockid
-        this.timestamp = Date.now()
-        this.blockhash = this.getHash()
-        this.prevHash = previousHash
-        this.data = data
-    }
-
-    getHash() {
-        return bcrypt.hashSync(String(this.blockid + this.timestamp + this.previousHash + JSON.stringify(this.data)), 10)
-    }
-}
+const Block = require('./block')
 
 class BlockChain {
     constructor() {
@@ -29,10 +14,12 @@ class BlockChain {
     }
 }
 
-const Ledger = new BlockChain()
+//const Ledger = new BlockChain()
 
-Ledger.addBlock({FirstName: "Thomas", LasttName: "Eric", Amount: 2403})
-Ledger.addBlock({FirstName: "Wes", LasttName: "Tim", Amount: 203})
-Ledger.addBlock({FirstName: "Tom", LasttName: "Jim", Amount: 2099403})
+//Ledger.addBlock({FirstName: "Thomas", LasttName: "Eric", Amount: 2403})
+//Ledger.addBlock({FirstName: "Wes", LasttName: "Tim", Amount: 203})
+//Ledger.addBlock({FirstName: "Tom", LasttName: "Jim", Amount: 2099403})
 
-console.log(JSON.stringify(Ledger, null, 6))
+//console.log(JSON.stringify(Ledger, null, 6))
+
+module.exports = {BlockChain}
