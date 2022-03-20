@@ -1,8 +1,8 @@
 const Block = require('./block')
 
-function BlockChain (data) {
+const chain = []
 
-    const chain = []
+function BlockChain (data) {
 
     let blockid = chain.length
     let previousHash = chain.length !== 0 ? chain[chain.length - 1].blockhash : ''
