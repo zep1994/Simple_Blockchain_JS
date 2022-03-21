@@ -15,7 +15,7 @@ router.post('/employee', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/employees', (req, res) => {
+router.get('/employee', (req, res) => {
     res.send(Chain)
 })
 
