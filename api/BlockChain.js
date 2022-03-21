@@ -11,6 +11,7 @@ function BlockChain (data) {
     let block = new Block(blockid, previousHash, data)
 
     Chain.push(block)    
+    //console.log(JSON.stringify(Chain, null, 6))
 }
 
 function getHash() {

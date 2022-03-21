@@ -4,18 +4,18 @@ class Employee extends Component {
     constructor() {
         super()
             this.state = {
-                chain: []
+                Chain: []
         }
     }
 
     render() {
         return (
             <div className="App">
-                {this.state.chain.map((chain, index) => (
+                {this.state.Chain.map((Chain, index) => (
                     <li key={index}>
-                        <span>{chain.data.FirstName}</span><br />
-                        <span>{chain.data.LastName}</span><br />
-                        <span>{chain.data.Amount}</span><br />
+                        <span>{Chain.data.FirstName}</span><br />
+                        <span>{Chain.data.LastName}</span><br />
+                        <span>{Chain.data.Amount}</span><br />
                     </li>
                 ))}
             </div>
@@ -25,7 +25,7 @@ class Employee extends Component {
     componentDidMount() {
         fetch('http://localhost:5000/employee/')
         .then(res => res.json())
-        .then(res => this.setState({ chain: res.chain }))
+        .then(res => this.setState({ Chain: res.Chain }))
     }
 }
 

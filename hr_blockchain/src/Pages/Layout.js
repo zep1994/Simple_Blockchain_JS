@@ -14,6 +14,12 @@ const Layout = () => {
           <li>
             <Link to="/employee">View Employee</Link>
           </li>
+
+          {/* View Time Off Route */}
+          <li>
+            <Link to="/time-off">Time Off</Link>
+          </li>
+
         </ul>
       </nav>
 
