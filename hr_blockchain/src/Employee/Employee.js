@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card, Button } from 'react-bootstrap'
 
 class Employee extends Component {
     constructor() {
@@ -12,11 +13,15 @@ class Employee extends Component {
         return (
             <div className="App">
                 {this.state.Chain.map((Chain, index) => (
-                    <li key={index}>
-                        <span>{Chain.data.FirstName}</span><br />
-                        <span>{Chain.data.LastName}</span><br />
-                        <span>{Chain.data.Amount}</span><br />
-                    </li>
+                    <Card style={{ width: '18rem', top: 20, left: 20 }} key={index}>
+                    <Card.Body>
+                        <Card.Title>{Chain.data.FirstName} {Chain.data.LastName}</Card.Title>
+                        <Card.Text>
+                            {Chain.data.Amount}
+                        </Card.Text>
+                        <Button variant="primary">Profile</Button>
+                        </Card.Body>
+                    </Card>
                 ))}
             </div>
         );
