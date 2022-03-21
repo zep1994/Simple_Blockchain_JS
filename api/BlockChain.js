@@ -12,4 +12,4 @@ function BlockChain (data) {
     console.log(JSON.stringify(block, null, 6))
 }
 
-module.exports = { BlockChain}
+module.exports = { BlockChain, chain}
