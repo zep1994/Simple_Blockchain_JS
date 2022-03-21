@@ -1,15 +1,20 @@
-const Block = require('./block')
+const bcrypt = require('bcrypt')
 
-const chain = []
+const Block = require('./block')
+const Chain = require('./chain')
 
 function BlockChain (data) {
-
-    let blockid = chain.length
-    let previousHash = chain.length !== 0 ? chain[chain.length - 1].blockhash : ''
+    console.log(Chain)
+    let blockid = Chain.length
+    let blockhash = getHash()
+    let previousHash = Chain.length !== 0 ? Chain[Chain.length - 1].blockhash : ''
     let block = new Block(blockid, previousHash, data)
 
-    chain.push(block)
-    console.log(JSON.stringify(block, null, 6))
+    Chain.push(block)    
 }
 
-module.exports = { BlockChain, chain}
+function getHash() {
+    return bcrypt.hashSync(String(this.blockid + this.timestamp + this.previousHash + JSON.stringify(this.data)), 10)
+}
+
+module.exports = { BlockChain, Chain}
