@@ -19,7 +19,7 @@ class CreateEmployee extends Component {
     }
 
     handleSubmit = (e) => {
-        fetch('http://localhost:5000/add-employee', {
+        fetch('http://localhost:5000/admin/add-employee', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -34,7 +34,7 @@ class CreateEmployee extends Component {
         return (
             <div className="App">
                 <h1 className="Title">Create Employee</h1>  
-                    <form method="POST" action="/employee" onSubmit={this.handleSubmit}>
+                    <form method="POST" action="/admin/employee" onSubmit={this.handleSubmit}>
                         <input type="text" name="FirstName" onChange={this.handleChange} placeholder="First Name" />
                         <br />
                         <input type="text" name="LastName" onChange={this.handleChange} placeholder='Last Name' />

@@ -21,12 +21,12 @@ ReactDOM.render(
         </Route>
 
         {/* Create Employee Route */}
-        <Route path="/add-employee" element={<Layout />}>
+        <Route path="/admin/add-employee" element={<Layout />}>
           <Route index element={<CreateEmployee />} />
         </Route>
 
          {/* View Employee Route */}
-        <Route path="/employee" element={<Layout />}>
+        <Route path="/admin/employee" element={<Layout />}>
           <Route index element={<Employee />} />
         </Route>
 

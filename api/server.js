@@ -11,7 +11,7 @@ const AdminRoutes = require('./routes/admin')
 const UserRoutes = require('./routes/user')
 
 // Set Routes paths from folder
-app.use(AdminRoutes)
+app.use('/admin/', AdminRoutes.routes)
 app.use(UserRoutes)
 
 // Create HTTP Server

@@ -19,4 +19,5 @@ router.get('/employee', (req, res) => {
     res.send(Chain)
 })
 
-module.exports = router
+exports.routes = router 
+
