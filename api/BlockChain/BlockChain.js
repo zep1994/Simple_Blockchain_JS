@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 
 const Block = require('./block')
-const Chain = require('./chain')
+const Chain = require('../chain')
 
 function BlockChain (data) {
     console.log(Chain)

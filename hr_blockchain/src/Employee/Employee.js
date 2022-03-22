@@ -28,7 +28,7 @@ class Employee extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/admin/employee/')
+        fetch('http://localhost:5000/admin/employees/')
         .then(res => res.json())
         .then(res => this.setState({ Chain: res.Chain }))
     }

@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 const { route } = require('./admin')
-const BlockChain= require('../BlockChain')
-const Chain = require('../BlockChain')
+const BlockChain= require('../BlockChain/BlockChain')
+const Chain = require('../BlockChain/BlockChain')
 
 // Create Home Route
 router.get('/', (req, res) => { 

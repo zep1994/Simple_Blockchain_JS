@@ -10,7 +10,7 @@ const Layout = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/admin/add-employee">Create Employee</Nav.Link>
-            <Nav.Link href="/admin/employee">View Employee</Nav.Link>
+            <Nav.Link href="/admin/employees">View Employees</Nav.Link>
             <Nav.Link href="/time-off">Time Off</Nav.Link>
           </Nav>
         </Navbar.Collapse>

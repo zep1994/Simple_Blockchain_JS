@@ -26,7 +26,7 @@ ReactDOM.render(
         </Route>
 
          {/* View Employee Route */}
-        <Route path="/admin/employee" element={<Layout />}>
+        <Route path="/admin/employees" element={<Layout />}>
           <Route index element={<Employee />} />
         </Route>
 
