@@ -4,7 +4,7 @@ import './App.css';
 function App() {
     return (
       <div className="App">
-        <h1 className="App-title">Welcome to BlockChain</h1>      
+        <h1 className="App-title">Welcome</h1>      
       </div>
     );
   }
