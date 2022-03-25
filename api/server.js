@@ -9,13 +9,15 @@ app.use(bodyParser.urlencoded({extended: false}))
 //Define User Routes
 const AdminRoutes = require('./routes/admin')
 const UserRoutes = require('./routes/user')
-const db = require('./utils/database')
+const AuthRoutes = require('./routes/auth')
+
 const sequelize = require('./utils/database')
 const User = require('./Models/User')
 
 // Set Routes paths from folder
 app.use('/admin/', AdminRoutes)
 app.use(UserRoutes)
+app.use('/sign-up', AuthRoutes)
 
 app.use((req, res, next) => {
     User.findByPk(1)
@@ -30,7 +32,8 @@ app.use((req, res, next) => {
 // User.hasMany(Model, { constraints: true, onDelete: 'CASCADE' })
 
 sequelize
-    //.sync({ force: true })
+    
+    //.sync({ force: true }) // Rewrite DB tables each restart
     .sync()
     .then(res => {
         return User.findByPk(1)

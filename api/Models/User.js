@@ -9,9 +9,21 @@ const User = sequelize.define('user', {
         allowNull: false,
         primaryKey: true
     },
-    firstName: Sequelize.STRING,
-    lastName: Sequelize.STRING,
-    email: Sequelize.STRING,
+    firstName: {
+        type: Sequelize.STRING,
+        required: true
+    },
+    lastName: {
+        type: Sequelize.STRING,
+        required: true
+    },
+    email: {
+        type: Sequelize.STRING,
+        required: true
+    },
+    Salary: Sequelize.FLOAT,
+    Approval: Sequelize.FLOAT,
+    Status: Sequelize.STRING,
 })
 
 module.exports = User

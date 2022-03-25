@@ -9,6 +9,7 @@ import CreateTimeOff from "./TimeOff/CreateTimeOff"
 import Employee from './Employee/Employee'
 import reportWebVitals from './reportWebVitals'
 import TimeOff from './TimeOff/TimeOff'
+import Signup from './Auth/Signup'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -38,6 +39,11 @@ ReactDOM.render(
         {/* View Time off Route */}
         <Route path="/create-time-off" element={<Layout />}>
           <Route index element={< CreateTimeOff />} />
+        </Route>
+
+         {/* Sign Up Route */}
+        <Route path="/sign-up" element={<Layout />}>
+          <Route index element={< Signup />} />
         </Route>
 
       </Routes>

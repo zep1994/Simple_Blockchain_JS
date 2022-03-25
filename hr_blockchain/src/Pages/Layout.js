@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import {  Navbar, Nav } from 'react-bootstrap'
 
 const Layout = () => {
@@ -12,11 +12,12 @@ const Layout = () => {
             <Nav.Link href="/admin/add-employee">Create Employee</Nav.Link>
             <Nav.Link href="/admin/employees">View Employees</Nav.Link>
             <Nav.Link href="/time-off">Time Off</Nav.Link>
+            <Nav.Link href="/login" className="float-right">Login</Nav.Link>
+            <Nav.Link href="/logout" className="float-right">Logout</Nav.Link>
+            <Nav.Link href="/sign-up" className="float-right">Sign Up</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-
       </Navbar>
-
       <Outlet />
     </>
   )
