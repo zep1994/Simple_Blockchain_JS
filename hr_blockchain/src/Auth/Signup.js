@@ -4,19 +4,13 @@ class SignUp extends Component {
     constructor() {
         super()
             this.state = {
-            FirstName: "",
-            LastName: "",
-            Amount: 0
+            firstName: "",
+            lastName: "",
+            email: 0,
+            password: "",
         }
     }
 
-    handleChange = (e) => {
-        this.setState({
-            FirstName: this.state.FirstName, 
-            LastName: this.state.LastName, 
-            Amount: this.state.Amount 
-        })
-    }
 
     handleSubmit = (e) => {
 
@@ -27,16 +21,24 @@ class SignUp extends Component {
             <div>
                 <form className="login-form" action="/sign-up" method="POST">
                     <div className="form-control">
+                        <label htmlFor="firstName">First Name</label>
+                        <input type="text" name="firstName"></input>
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input type="text" name="lastName"></input>
+                    </div>
+                    <div className='form-control'>
                         <label htmlFor="email">E-Mail</label>
-                            <input type="email" name="email" id="email"></input>
-                        </div>
-                        <div className="form-control">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" name="password" id="password"></input>
-                        </div>
-                        <div className="form-control">
-                            <label htmlFor="confirmPassword">Confirm Password</label>
-                            <input type="password" name="confirmPassword" id="confirmPassword"></input>
+                        <input type="email" name="email" id="email"></input>
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" id="password"></input>
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword"></input>
                     </div>
                     <button className="btn" type="submit">Signup</button>
                 </form> 
