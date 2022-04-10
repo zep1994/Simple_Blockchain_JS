@@ -19,7 +19,7 @@ class SignUp extends Component {
     render() {
         return (
             <div>
-                <form className="login-form" action="/sign-up" method="POST">
+                <form className="login-form" action="/register" method="POST">
                     <div className="form-control">
                         <label htmlFor="firstName">First Name</label>
                         <input type="text" name="firstName"></input>

@@ -1,14 +1,14 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const mongoConnect = require('./utils/database')
+const mongoConnect = require('./utils/database').mongoConnect
 const app = express()
 const port = process.env.PORT || 5000 // Port 5000
 app.use(cors()) // Allow Cors
 app.use(bodyParser.urlencoded({extended: false}))
 
 //Define User Routes
-// const AdminRoutes = require('./routes/admin')
+//const AdminRoutes = require('./routes/admin')
 // const UserRoutes = require('./routes/user')
 // const AuthRoutes = require('./routes/auth')
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 //const User = require('./Models/User')
 
 // // Set Routes paths from folder
-// app.use('/admin/', AdminRoutes)
+//app.use('/admin/', AdminRoutes)
 // app.use(UserRoutes)
 // app.use('/sign-up', AuthRoutes)
 
@@ -32,7 +32,6 @@ app.use((req, res, next) => {
 
 
 mongoConnect(client => {
-    console.log(client);
     app.listen(3000);
   });
   

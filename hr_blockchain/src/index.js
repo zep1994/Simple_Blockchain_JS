@@ -42,7 +42,7 @@ ReactDOM.render(
         </Route>
 
          {/* Sign Up Route */}
-        <Route path="/sign-up" element={<Layout />}>
+        <Route path="/register" element={<Layout />}>
           <Route index element={< Signup />} />
         </Route>
 

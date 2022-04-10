@@ -1,6 +1,23 @@
 //const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt');
 
+class User {
+    constructor(firstName, lastName, email, password, status) {
+        this.firstName = firstName
+        this.lastName = lastName
+        this.email = email
+        this.password = password
+    }
+
+    save() {
+        const db = getDb()
+        db.collection('users').insertOne(this).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+}
 
 //const sequelize = require('../utils/database')
 
