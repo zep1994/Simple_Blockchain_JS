@@ -1,34 +1,35 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const path = require('path') // create project path and not OS path and we will use path join to concat the path regardless of OS
 const mongoConnect = require('./utils/database').mongoConnect
 const app = express()
-const port = process.env.PORT || 5000 // Port 5000
+const port = process.env.PORT || 3000 // Port 3000
 app.use(cors()) // Allow Cors
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Define User Routes
-//const AdminRoutes = require('./routes/admin')
+const AdminRoutes = require('./routes/admin')
 // const UserRoutes = require('./routes/user')
-// const AuthRoutes = require('./routes/auth')
+const AuthRoutes = require('./routes/auth')
 
 //const sequelize = require('./utils/database')
 //const User = require('./Models/User')
 
 // // Set Routes paths from folder
-//app.use('/admin/', AdminRoutes)
+app.use('/admin/', AdminRoutes)
 // app.use(UserRoutes)
-// app.use('/sign-up', AuthRoutes)
+app.use(AuthRoutes)
 
-
-app.use((req, res, next) => {
-    // User.findByPk(1)
-    //     .then(user => {
-    //         req.user = user
-    //         next()
-    //     })
-    //     .catch(err => console.log(err))
-})
+// app.use((req, res, next) => {
+//     // User.findByPk(1)
+//     //     .then(user => {
+//     //         req.user = user
+//     //         next()
+//     //     })
+//     //     .catch(err => console.log(err))
+// })
 
 
 mongoConnect(client => {

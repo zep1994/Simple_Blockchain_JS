@@ -14,7 +14,7 @@ const Layout = () => {
             <Nav.Link href="/time-off">Time Off</Nav.Link>
             <Nav.Link href="/login" className="float-right">Login</Nav.Link>
             <Nav.Link href="/logout" className="float-right">Logout</Nav.Link>
-            <Nav.Link href="/sign-up" className="float-right">Sign Up</Nav.Link>
+            <Nav.Link href="/register" className="float-right">Register</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

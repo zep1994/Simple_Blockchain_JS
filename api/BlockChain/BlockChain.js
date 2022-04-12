@@ -1,21 +1,25 @@
-const bcrypt = require('bcrypt')
-
 const Block = require('./block')
-const Chain = require('../chain')
 
-function BlockChain (data) {
-    console.log(Chain)
-    let blockid = Chain.length
-    let blockhash = getHash()
-    let previousHash = Chain.length !== 0 ? Chain[Chain.length - 1].blockhash : ''
-    let block = new Block(blockid, previousHash, data)
+class BlockChain {
+    constructor() {
+        this.chain = []
+    }
 
-    Chain.push(block)    
-    //console.log(JSON.stringify(Chain, null, 6))
+    addBlock(data) {
+        let blockid = this.chain.length
+        let previousHash = this.chain.length !== 0 ? this.chain[this.chain.length - 1].blockhash : ''
+        let block = new Block(blockid, previousHash, data)
+
+        this.chain.push(block)
+    }
 }
 
-function getHash() {
-    return bcrypt.hashSync(String(this.blockid + this.timestamp + this.previousHash + JSON.stringify(this.data)), 10)
-}
+//const Ledger = new BlockChain()
 
-module.exports = { BlockChain, Chain}
+//Ledger.addBlock({FirstName: "Thomas", LasttName: "Eric", Amount: 2403})
+//Ledger.addBlock({FirstName: "Wes", LasttName: "Tim", Amount: 203})
+//Ledger.addBlock({FirstName: "Tom", LasttName: "Jim", Amount: 2099403})
+
+//console.log(JSON.stringify(Ledger, null, 6))
+
+module.exports = {BlockChain}
