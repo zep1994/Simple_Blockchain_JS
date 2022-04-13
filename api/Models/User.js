@@ -1,5 +1,9 @@
 //const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt');
+const { getDb } = require('../utils/database');
+const mongodb = require('mongodb')
+
+const ObjectId = mongodb.ObjectId
 
 class User {
     constructor(firstName, lastName, email, password, status) {
@@ -16,6 +20,11 @@ class User {
         }).catch(err => {
             console.log(err)
         })
+    }
+
+    static findById(userId) {
+        const db = getDb()
+        return db.collection('users').find({_id: new ObjectId(userId)}).next()
     }
 }
 

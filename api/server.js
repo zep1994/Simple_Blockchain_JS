@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Define User Routes
 const AdminRoutes = require('./routes/admin')
-// const UserRoutes = require('./routes/user')
+const UserRoutes = require('./routes/user')
 const AuthRoutes = require('./routes/auth')
 
 //const sequelize = require('./utils/database')
@@ -21,7 +21,7 @@ const AuthRoutes = require('./routes/auth')
 app.use('/admin/', AdminRoutes)
 // app.use(UserRoutes)
 app.use(AuthRoutes)
-
+app.use(UserRoutes)
 // app.use((req, res, next) => {
 //     // User.findByPk(1)
 //     //     .then(user => {
@@ -33,7 +33,8 @@ app.use(AuthRoutes)
 
 
 mongoConnect(client => {
-    app.listen(3000);
+    app.listen(port);
+    console.log(port)
   });
   
 

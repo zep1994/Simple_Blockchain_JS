@@ -7,7 +7,7 @@ const Chain = require('../BlockChain/BlockChain')
 
 // Create Home Route
 router.get('/', (req, res) => { 
-    console.log("This is the home page")
+    res.write("hello")
 })
 
 // Create Time Off Route
