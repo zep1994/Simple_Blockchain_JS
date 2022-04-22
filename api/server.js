@@ -9,13 +9,16 @@ app.use(cors()) // Allow Cors
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //Define User Routes
 const AdminRoutes = require('./routes/admin')
 const UserRoutes = require('./routes/user')
 const AuthRoutes = require('./routes/auth')
+const EmployeeRoutes = require('./routes/employee')
 
 //const sequelize = require('./utils/database')
-//const User = require('./Models/User')
+const User = require('./Models/User')
+const { ObjectId, Db } = require('mongodb')
 
 // // Set Routes paths from folder
 app.use('/admin/', AdminRoutes)
@@ -23,14 +26,16 @@ app.use('/admin/', AdminRoutes)
 app.use(AuthRoutes)
 app.use(UserRoutes)
 app.use((req, res, next) => {
-    User.findByPk('62625f88677b8a16e238356f')
-        .then(user => {
-            req.user = user
-            next()
-        })
-        .catch(err => console.log(err))
+    // User.find({"_id": ObjectId('62625f88677b8a16e238356f')})
+    //     .then(user => {
+    //         req.user = user
+    //         next()
+    //     })
+    //     .catch(err => console.log(err))
+    next()
 })
 
+app.use(EmployeeRoutes)
 
 mongoConnect(client => {
     app.listen(port);

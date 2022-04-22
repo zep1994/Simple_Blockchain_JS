@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div className="App">
+        <h1 className="Title">Create Time Off</h1>  
+            <form method="POST" action="/timeoff">
+                <input type="date" name="startDate" />
+                <input type="date" name="endDate" />
+                <select name="hours">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+                <input type="submit" value="Submit"/>
+            </form>    
+    </div>
+</body>
+</html>
