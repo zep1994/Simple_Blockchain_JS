@@ -15,7 +15,7 @@ class User {
 
     save() {
         const db = getDb()
-        db.collection('users').insertOne(this).then(res => {
+        return db.collection('users').insertOne(this).then(res => {
             console.log(res)
         }).catch(err => {
             console.log(err)

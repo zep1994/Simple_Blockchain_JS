@@ -22,19 +22,18 @@ app.use('/admin/', AdminRoutes)
 // app.use(UserRoutes)
 app.use(AuthRoutes)
 app.use(UserRoutes)
-// app.use((req, res, next) => {
-//     // User.findByPk(1)
-//     //     .then(user => {
-//     //         req.user = user
-//     //         next()
-//     //     })
-//     //     .catch(err => console.log(err))
-// })
+app.use((req, res, next) => {
+    User.findByPk('62625f88677b8a16e238356f')
+        .then(user => {
+            req.user = user
+            next()
+        })
+        .catch(err => console.log(err))
+})
 
 
 mongoConnect(client => {
     app.listen(port);
-    console.log(port)
   });
   
 
