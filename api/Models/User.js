@@ -28,6 +28,8 @@ class User {
     }
 }
 
+module.exports = User
+
 //const sequelize = require('../utils/database')
 
 // const User = sequelize.define('user', {
