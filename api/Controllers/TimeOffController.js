@@ -1,5 +1,6 @@
 const path = require('path')
 const rootDir = require('../utils/path')
+const TimeOff = require('../Models/TimeOff')
 
 // TIME OFF
 exports.getTimeOff = (req, res) => {
@@ -11,5 +12,13 @@ exports.postTimeOff = (req, res, next) => {
     const startDate = req.body.startDate
     const endDate = req.body.endDate
     const hours = req.body.hours 
-    
+    const timeOff = new TimeOff(startDate, endDate, hours)
+    timeOff
+        .save()
+        .then(() => {
+            res.redirect('/timeoff')
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
