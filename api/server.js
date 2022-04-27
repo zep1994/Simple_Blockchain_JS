@@ -20,10 +20,14 @@ const EmployeeRoutes = require('./routes/employee')
 const User = require('./Models/User')
 const { ObjectId, Db } = require('mongodb')
 
+//Set Template engine to ejs
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 // // Set Routes paths from folder
 app.use('/admin/', AdminRoutes)
 // app.use(UserRoutes)
-app.use(AuthRoutes)
+app.use(AuthRoutes) // User Sign and login route
 app.use(UserRoutes)
 app.use((req, res, next) => {
     // User.find({"_id": ObjectId('62625f88677b8a16e238356f')})
