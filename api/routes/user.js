@@ -5,10 +5,8 @@ const { route } = require('./admin')
 const BlockChain= require('../BlockChain/BlockChain')
 const Chain = require('../BlockChain/BlockChain')
 
-// Create Home Route
-router.get('/', (req, res) => { 
-    res.write("hello")
-})
+const path = require('path')
+const rootDir = require('../utils/path')
 
 // Create Time Off Route
 router.post('/time-off', (req, res) => {

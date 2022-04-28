@@ -6,11 +6,18 @@ const mongoConnect = require('./utils/database').mongoConnect
 const app = express()
 const port = process.env.PORT || 3000 // Port 3000
 app.use(cors()) // Allow Cors
+
+//Set Template engine to ejs
+app.set('view engine', 'ejs');
+app.set('views', 'api/views');
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 //Define User Routes
+const HomeRoutes = require('./routes/home')
 const AdminRoutes = require('./routes/admin')
 const UserRoutes = require('./routes/user')
 const AuthRoutes = require('./routes/auth')
@@ -20,26 +27,12 @@ const EmployeeRoutes = require('./routes/employee')
 const User = require('./Models/User')
 const { ObjectId, Db } = require('mongodb')
 
-//Set Template engine to ejs
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-
-// // Set Routes paths from folder
+app.use(HomeRoutes)
 app.use('/admin/', AdminRoutes)
-// app.use(UserRoutes)
-app.use(AuthRoutes) // User Sign and login route
-app.use(UserRoutes)
-app.use((req, res, next) => {
-    // User.find({"_id": ObjectId('62625f88677b8a16e238356f')})
-    //     .then(user => {
-    //         req.user = user
-    //         next()
-    //     })
-    //     .catch(err => console.log(err))
-    next()
-})
 
 app.use(EmployeeRoutes)
+app.use(AuthRoutes)
+app.use(UserRoutes)
 
 mongoConnect(client => {
     app.listen(port);
@@ -47,10 +40,19 @@ mongoConnect(client => {
   
 
 
+
 // SEQUALIZE IS BELOW 
 
 
-
+// app.use((req, res, next) => {
+//   // User.find({"_id": ObjectId('62625f88677b8a16e238356f')})
+//   //     .then(user => {
+//   //         req.user = user
+//   //         next()
+//   //     })
+//   //     .catch(err => console.log(err))
+//   next()
+// })
 
 
 
