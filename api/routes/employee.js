@@ -12,5 +12,8 @@ router.get('/timeoff', TimeOffController.getTimeOff)
 // POST Sign up Route
 router.post('/timeoff', TimeOffController.postTimeOff)
 
+//GET SINGLE TIME
+router.get('/timeoff/:timeId', TimeOffController.getTime)
+
 module.exports = router
 

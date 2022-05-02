@@ -17,6 +17,7 @@ class TimeOff {
         })
     }
 
+    // FETCH ALL
     static fetchAll() {
         const db = getDb()
         return db
@@ -28,6 +29,22 @@ class TimeOff {
             return timeoff
         })
         .catch(err => {console.log(err)})
+    }
+
+    //FETCH SINGLE
+    static findById(timeId) {
+        const db = getDb()
+        return db
+        .collection('timeoff')
+        .find({_id: prodId})
+        .next()
+        .then(time => {
+            console.log(time)
+            return time
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 
