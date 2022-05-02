@@ -16,6 +16,19 @@ class TimeOff {
             console.log(err)
         })
     }
+
+    static fetchAll() {
+        const db = getDb()
+        return db
+        .collection('timeoff')
+        .find()
+        .toArray()
+        .then(timeoff =>{
+            console.log(timeoff)
+            return timeoff
+        })
+        .catch(err => {console.log(err)})
+    }
 }
 
 module.exports = TimeOff
