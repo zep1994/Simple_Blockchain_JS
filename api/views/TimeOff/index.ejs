@@ -1,1 +1,33 @@
-helo
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <%- include('../partials/navigation.ejs') %>
+
+        <main>
+            <% if (items.length > 0) { %>
+                <div class="grid">
+                    <% for (let timeoff of items) { %>
+                        <article class="card timeoff-item">
+                            <header class="card__header">
+                                <h1 class="timeoff__title">
+                                    <%= timeoff.title %>
+                                </h1>
+                            </header>
+
+                            <div class="card__content">
+                                <p class="">
+                                    <%= timeoff.startDate %>
+                                </p>
+                            </div>
+                            <div class="card__actions">
+                                <a href="/timeoff/<%= timeoff._id %>" class="btn">Details</a>
+                            </div>
+                        </article>
+                        <% } %>
+                </div>
+                <% } else { %>
+                    <h1>No timeoff Found!</h1>
+                    <% } %>
+        </main>
+        <%- include('../partials/footer.ejs') %>

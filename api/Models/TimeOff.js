@@ -36,7 +36,7 @@ class TimeOff {
         const db = getDb()
         return db
         .collection('timeoff')
-        .find({_id: prodId})
+        .find({_id: new mongodb.ObjectId(timeId)})
         .next()
         .then(time => {
             console.log(time)
