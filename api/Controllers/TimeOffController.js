@@ -5,8 +5,9 @@ const { getDb } = require('../utils/database')
 
 // FETCH ALL TIME OFF
 exports.getTimesOff = (req, res, next) => {
-    TimeOff.fetchAll()
+    TimeOff.find()
         .then(timeoff => {
+            console.log(timeoff)
             res.render('Timeoff/index', {
                 items: timeoff,
                 pageTitle: TimeOff,
@@ -28,13 +29,11 @@ exports.postTimeOff = (req, res, next) => {
     const startDate = req.body.startDate
     const endDate = req.body.endDate
     const hours = req.body.hours 
-    const timeOff = new TimeOff(
-        startDate, 
-        endDate, 
-        hours, 
-        null, 
-        req.user._id
-    )
+    const timeOff = new TimeOff({
+        startDate: startDate, 
+        endDate: endDate, 
+        hours: hours, 
+    })
     timeOff
         .save()
         .then(() => {

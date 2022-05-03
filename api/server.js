@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 const path = require('path') // create project path and not OS path and we will use path join to concat the path regardless of OS
-const mongoConnect = require('./utils/database').mongoConnect
+//const mongoConnect = require('./utils/database').mongoConnect
 const app = express()
 const port = process.env.PORT || 3000 // Port 3000
 app.use(cors()) // Allow Cors
@@ -14,14 +15,14 @@ app.set('views', 'api/views');
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  User.findById('6271417fb29045bcf0a2c3ad')
-      .then(user => {
-          req.user = user
-          next()
-      })
-      .catch(err => console.log(err))
-})
+// app.use((req, res, next) => {
+//   User.findById('6271417fb29045bcf0a2c3ad')
+//       .then(user => {
+//           req.user = user
+//           next()
+//       })
+//       .catch(err => console.log(err))
+// })
 
 
 
@@ -43,9 +44,13 @@ app.use(EmployeeRoutes)
 app.use(AuthRoutes)
 app.use(UserRoutes)
 
-mongoConnect(client => {
-    app.listen(port);
-  });
+mongoose.connect('mongodb+srv://tmatlock:Rebel1994!@node.9l9xu.mongodb.net/hr_blockchain?retryWrites=true&w=majority')
+  .then(res => {
+    app.listen(port)
+  })
+  .catch(err => {
+    console.log(err)
+  })
   
 
 

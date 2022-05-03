@@ -1,53 +1,74 @@
-const { getDb } = require('../utils/database')
-const mongodb = require('mongodb')
+const mongoose = require('mongoose')
 
-class TimeOff {
-    constructor(startDate, endDate, hours, id, userId) {
-        this.startDate = startDate
-        this.endDate = endDate
-        this.hours = hours
-        this._id = id ? new mongodb.ObjectId(id) : null
-        this.userId = userId
+const Schema = mongoose.Schema
+
+const timeSchema = new Schema({
+    startDate: {
+        type: Date,
+        required: true
+    },
+    endDate: {
+        type: Date,
+        required: true
+    },
+    hours: {
+        type: Number,
+        required: true
     }
+})
 
-    save() {
-        const db = getDb()
-        return db.collection('timeoff').insertOne(this).then(res => {
-            console.log(res)
-        }).catch(err => {
-            console.log(err)
-        })
-    }
+module.exports = mongoose.model('TimeOff', timeSchema)
 
-    // FETCH ALL
-    static fetchAll() {
-        const db = getDb()
-        return db
-        .collection('timeoff')
-        .find()
-        .toArray()
-        .then(timeoff =>{
-            console.log(timeoff)
-            return timeoff
-        })
-        .catch(err => {console.log(err)})
-    }
+// const { getDb } = require('../utils/database')
+// const mongodb = require('mongodb')
 
-    //FETCH SINGLE
-    static findById(timeId) {
-        const db = getDb()
-        return db
-        .collection('timeoff')
-        .find({_id: new mongodb.ObjectId(timeId)})
-        .next()
-        .then(time => {
-            console.log(time)
-            return time
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
-}
+// class TimeOff {
+//     constructor(startDate, endDate, hours, id, userId) {
+//         this.startDate = startDate
+//         this.endDate = endDate
+//         this.hours = hours
+//         this._id = id ? new mongodb.ObjectId(id) : null
+//         this.userId = userId
+//     }
 
-module.exports = TimeOff
+//     save() {
+//         const db = getDb()
+//         return db.collection('timeoff').insertOne(this).then(res => {
+//             console.log(res)
+//         }).catch(err => {
+//             console.log(err)
+//         })
+//     }
+
+//     // FETCH ALL
+//     static fetchAll() {
+//         const db = getDb()
+//         return db
+//         .collection('timeoff')
+//         .find()
+//         .toArray()
+//         .then(timeoff =>{
+//             console.log(timeoff)
+//             return timeoff
+//         })
+//         .catch(err => {console.log(err)})
+//     }
+
+//     //FETCH SINGLE
+//     static findById(timeId) {
+//         const db = getDb()
+//         return db
+//         .collection('timeoff')
+//         .find({_id: new mongodb.ObjectId(timeId)})
+//         .next()
+//         .then(time => {
+//             console.log(time)
+//             return time
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+//     }
+// }
+
+// module.exports = TimeOff
