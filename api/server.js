@@ -14,9 +14,18 @@ app.set('views', 'api/views');
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  User.findById('6271417fb29045bcf0a2c3ad')
+      .then(user => {
+          req.user = user
+          next()
+      })
+      .catch(err => console.log(err))
+})
 
 
-//Define User Routes
+
+//Define Routes
 const HomeRoutes = require('./routes/home')
 const AdminRoutes = require('./routes/admin')
 const UserRoutes = require('./routes/user')

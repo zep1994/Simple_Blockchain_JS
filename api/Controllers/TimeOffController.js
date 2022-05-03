@@ -28,7 +28,13 @@ exports.postTimeOff = (req, res, next) => {
     const startDate = req.body.startDate
     const endDate = req.body.endDate
     const hours = req.body.hours 
-    const timeOff = new TimeOff(startDate, endDate, hours)
+    const timeOff = new TimeOff(
+        startDate, 
+        endDate, 
+        hours, 
+        null, 
+        req.user._id
+    )
     timeOff
         .save()
         .then(() => {

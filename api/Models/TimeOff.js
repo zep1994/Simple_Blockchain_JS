@@ -2,10 +2,12 @@ const { getDb } = require('../utils/database')
 const mongodb = require('mongodb')
 
 class TimeOff {
-    constructor(startDate, endDate, hours) {
+    constructor(startDate, endDate, hours, id, userId) {
         this.startDate = startDate
         this.endDate = endDate
         this.hours = hours
+        this._id = id ? new mongodb.ObjectId(id) : null
+        this.userId = userId
     }
 
     save() {

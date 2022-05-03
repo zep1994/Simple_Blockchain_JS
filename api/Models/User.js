@@ -23,10 +23,20 @@ class User {
     }
 
     static findById(userId) {
-        const db = getDb()
-        return db.collection('users').find({_id: new ObjectId(userId)}).next()
+        const db = getDb();
+        return db
+            .collection('users')
+            .findOne({ _id: new ObjectId(userId) })
+            .then(user => {
+                console.log(user);
+                return user;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
     }
-}
+    
 
 module.exports = User
 
