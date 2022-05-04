@@ -19,13 +19,13 @@ const userSchema = new Schema({
         required: false
     },
     status: {
-        type: Boolean,
+        type: String,
         required: true
     },
     timeoff: {
         times: [
             {
-                timeId: { type: Schema.Types.ObjectId, required: true },
+                timeId: { type: Schema.Types.ObjectId, ref: 'TimeOff', required: true },
                 startDate: { type: Schema.Types.Date, required: true },
                 endDate: { type: Schema.Types.Date, required: true },
                 hours: { type: Schema.Types.Number, required: true }
@@ -34,7 +34,7 @@ const userSchema = new Schema({
     }
 })
 
-
+module.exports = mongoose.model('User', userSchema);
 
 
 // //const Sequelize = require('sequelize')

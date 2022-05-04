@@ -15,17 +15,6 @@ app.set('views', 'api/views');
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use((req, res, next) => {
-//   User.findById('6271417fb29045bcf0a2c3ad')
-//       .then(user => {
-//           req.user = user
-//           next()
-//       })
-//       .catch(err => console.log(err))
-// })
-
-
-
 //Define Routes
 const HomeRoutes = require('./routes/home')
 const AdminRoutes = require('./routes/admin')
@@ -44,8 +33,32 @@ app.use(EmployeeRoutes)
 app.use(AuthRoutes)
 app.use(UserRoutes)
 
+app.use((req, res, next) => {
+  User.findById('627295e68c57079e3e67cdc3')
+      .then(user => {
+          req.user = user
+          next()
+      })
+      .catch(err => console.log(err))
+})
+
 mongoose.connect('mongodb+srv://tmatlock:Rebel1994!@node.9l9xu.mongodb.net/hr_blockchain?retryWrites=true&w=majority')
   .then(res => {
+    User.findOne().then(user => {
+      if (!user) {
+        const user = new User({
+          firstName: "Thomas",
+          lastName: "Matlock",
+          email: "thomasmatlockbba@gmail.com",
+          salary: "100000",
+          status: "Active",
+          timeoff: {
+            time: []
+          }
+        })
+        user.save()
+      }
+    })
     app.listen(port)
   })
   .catch(err => {

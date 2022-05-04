@@ -21,7 +21,10 @@ exports.getTimesOff = (req, res, next) => {
 
 // TIME OFF
 exports.getTimeOff = (req, res) => {
-    return res.sendFile(path.join(rootDir, 'views', 'Timeoff/CreateTimeOff.html'))
+    return res.render('Timeoff/CreateTimeOff', {
+        pageTitle: "Time Off",
+        path: '/timeoff'
+    })
 }
 
 // Create Time Off

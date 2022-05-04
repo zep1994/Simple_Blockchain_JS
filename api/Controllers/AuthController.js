@@ -5,7 +5,10 @@ const path = require('path')
 const rootDir = require('../utils/path')
 
 exports.getSignUp = (req, res, next) => {
-    return res.sendFile(path.join(rootDir, 'views', 'Auth/Register.html'))
+    return res.render('Auth/Register', {
+                pageTitle: "Sign Up",
+                path: '/register'
+            })
     }
 
 exports.postSignUp = (req, res, next) => {
