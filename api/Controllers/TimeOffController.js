@@ -36,6 +36,7 @@ exports.postTimeOff = (req, res, next) => {
         startDate: startDate, 
         endDate: endDate, 
         hours: hours, 
+        userId: req.user._id
     })
     timeOff
         .save()
