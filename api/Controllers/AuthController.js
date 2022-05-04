@@ -5,7 +5,7 @@ const path = require('path')
 const rootDir = require('../utils/path')
 
 exports.getSignUp = (req, res, next) => {
-    return res.render('Auth/Register', {
+    return res.render('Auth/register', {
                 pageTitle: "Sign Up",
                 path: '/register'
             })
@@ -33,4 +33,16 @@ exports.postSignUp = (req, res, next) => {
     .catch(err => {
         console.log(err)
     })
+}
+
+
+exports.getLogin = (req, res, next) => {
+    return res.render('Auth/login', {
+        path: '/login'
+    })
+}
+
+exports.postLogin = (req, res, next) => {
+    req.isLoggedIn = true 
+    res.redirect('/')
 }

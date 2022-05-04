@@ -1,15 +1,21 @@
-<div class="backdrop"></div>
 <header class="main-header">
     <nav class="main-header__nav">
         <ul class="main-header__item-list">
+            <% (isAuthenticated) { %>
             <li class="main-header__item">
                 <a class="" href="/">Home</a>
             </li>
             <li class="main-header__item">
                 <a class="" href="/timeoff">Time Off</a>
             </li>
+        </ul>
+        <ul class="main-header__item-list">
             <li class="main-header__item">
-                <a class="" href="/register">Register</a>
+                <a class="<%= path === '/register' ? 'active' : '' %>" href="/register">Register</a>
+            </li>
+            <% } %>
+            <li class="main-header__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
             </li>
         </ul>
     </nav>

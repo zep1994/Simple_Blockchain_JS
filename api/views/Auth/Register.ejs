@@ -1,7 +1,9 @@
-<%- include('../partials/head'); %>    
+<%- include('../partials/head'); %>   
+<link rel="stylesheet" href="css/auth.css">
+
 <body>
     <%- include('../partials/navigation.ejs') %>
-    <div>
+    <div class="container">
         <form class="login-form" action="/register" method="POST">
             <div class="form-control">
                 <label for="firstName">First Name</label>

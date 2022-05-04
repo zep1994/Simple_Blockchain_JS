@@ -6,12 +6,14 @@ const { getDb } = require('../utils/database')
 // FETCH ALL TIME OFF
 exports.getTimesOff = (req, res, next) => {
     TimeOff.find()
+    .populate('userId')
         .then(timeoff => {
             console.log(timeoff)
             res.render('Timeoff/index', {
                 items: timeoff,
                 pageTitle: TimeOff,
-                path: '/timeoff_master'
+                path: '/timeoff_master',
+                isAuthenticated: req.isLoggedIn
             })
         })
         .catch(err => {
@@ -36,7 +38,7 @@ exports.postTimeOff = (req, res, next) => {
         startDate: startDate, 
         endDate: endDate, 
         hours: hours, 
-        userId: req.user._id
+        userId: req.user
     })
     timeOff
         .save()
