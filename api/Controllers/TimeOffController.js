@@ -25,7 +25,8 @@ exports.getTimesOff = (req, res, next) => {
 exports.getTimeOff = (req, res) => {
     return res.render('Timeoff/CreateTimeOff', {
         pageTitle: "Time Off",
-        path: '/timeoff'
+        path: '/timeoff',
+        isAuthenticated: req.isLoggedIn
     })
 }
 
@@ -57,7 +58,8 @@ exports.getTime = (req, res, next) => {
             res.render('Timeoff/show', {
                 item: time,
                 pageTitle: time,
-                path: '/timeoff'
+                path: '/timeoff',
+                isAuthenticated: req.isLoggedIn
             })
         })
 }

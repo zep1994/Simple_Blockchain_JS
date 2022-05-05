@@ -7,7 +7,8 @@ const rootDir = require('../utils/path')
 exports.getSignUp = (req, res, next) => {
     return res.render('Auth/register', {
                 pageTitle: "Sign Up",
-                path: '/register'
+                path: '/register',
+                isAuthenticated: req.isLoggedIn
             })
     }
 
@@ -17,7 +18,7 @@ exports.postSignUp = (req, res, next) => {
     const email = req.body.email
     const password = req.body.password
     const confirmPassword = req.body.confirmPassword
-    User.findByPk({email: email}) // Check to see if user exists
+    User.findById({email: email}) // Check to see if user exists
     .then(x => {
         if (x) { // if user exists, redirect to login
             return res.redirect('/login')
@@ -37,12 +38,30 @@ exports.postSignUp = (req, res, next) => {
 
 
 exports.getLogin = (req, res, next) => {
+    const isLoggedIn = req
+    .get('Cookie')
+    .trim()
+    .split('=')[1];
+    console.log(req.session.isLoggedIn)
     return res.render('Auth/login', {
-        path: '/login'
+        path: '/login',
+        isAuthenticated: isLoggedIn
     })
 }
 
 exports.postLogin = (req, res, next) => {
-    req.isLoggedIn = true 
-    res.redirect('/')
+    User.findById('X2PHvESLJWFf1RVSuYVPOY8JN1Ylp0NX')
+        .then(user => {
+            req.session.isLoggedIn = true 
+            req.session.user = user 
+            res.redirect('/')
+        })
+        .catch(err => console.log(err))
+}
+
+exports.postLogout = (req, res, next) => {
+    req.session.destroy((err) => {
+        console.log(err)
+        res.redirect('/')
+    })
 }

@@ -3,24 +3,41 @@ const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const session = require('express-session')
+const MongoDBStore = require('connect-mongodb-session')(session)
 
 const User = require('./Models/User')
 const { ObjectId, Db } = require('mongodb')
 
+const MONGODB_URI = 'mongodb+srv://tmatlock:Rebel1994!@node.9l9xu.mongodb.net/hr_blockchain?retryWrites=true&w=majority'
+
 const app = express()
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: 'sessions'
+})
 const port = process.env.PORT || 3000 // Port 3000
 
 app.set('view engine', 'ejs');
 app.set('views', 'api/views');
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(express.static(path.join(__dirname, 'public')));
 
 const HomeRoutes = require('./routes/home')
 const AdminRoutes = require('./routes/admin')
 const UserRoutes = require('./routes/user')
 const AuthRoutes = require('./routes/auth')
 const EmployeeRoutes = require('./routes/employee')
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+  session({ 
+    secret: 'my secret', 
+    resave: false, 
+    saveUnitialized: false,
+    store: store
+  })
+)
 
 app.use(HomeRoutes)
 app.use('/admin/', AdminRoutes)
@@ -38,7 +55,7 @@ app.use(EmployeeRoutes)
 app.use(UserRoutes)
 app.use(AuthRoutes)
 
-mongoose.connect('mongodb+srv://tmatlock:Rebel1994!@node.9l9xu.mongodb.net/hr_blockchain?retryWrites=true&w=majority')
+mongoose.connect(MONGODB_URI)
   .then(res => {
     User.findOne().then(user => {
       if (!user) {
