@@ -1,8 +1,4 @@
 const User = require('../Models/User')
-const router = require('../routes/auth')
-
-const path = require('path')
-const rootDir = require('../utils/path')
 
 exports.getSignUp = (req, res, next) => {
     return res.render('Auth/register', {
@@ -38,19 +34,15 @@ exports.postSignUp = (req, res, next) => {
 
 
 exports.getLogin = (req, res, next) => {
-    const isLoggedIn = req
-    .get('Cookie')
-    .trim()
-    .split('=')[1];
-    console.log(req.session.isLoggedIn)
-    return res.render('Auth/login', {
+    res.render('auth/login', {
         path: '/login',
-        isAuthenticated: isLoggedIn
-    })
-}
+        pageTitle: 'Login',
+        isAuthenticated: false
+        });
+    };
 
 exports.postLogin = (req, res, next) => {
-    User.findById('X2PHvESLJWFf1RVSuYVPOY8JN1Ylp0NX')
+    User.findById(req.session._id)
         .then(user => {
             req.session.isLoggedIn = true 
             req.session.user = user 
@@ -60,8 +52,8 @@ exports.postLogin = (req, res, next) => {
 }
 
 exports.postLogout = (req, res, next) => {
-    req.session.destroy((err) => {
-        console.log(err)
-        res.redirect('/')
-    })
-}
+    req.session.destroy(err => {
+        console.log(err);
+        res.redirect('/');
+        });
+    };
