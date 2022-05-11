@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../partials/head'); %>
-    <title><%=  pageTitle  %></title>
 </head>
 <body>
     <%- include('../partials/navigation.ejs') %>
     <div className="App">
         
-        <h1 className="Title">Create Time Off</h1>  
+        <h1 className="Title"><%= pageTitle %></h1>  
             <form method="POST" action="/timeoff">
                 <input type="date" name="startDate" />
                 <input type="date" name="endDate" />
@@ -25,8 +21,12 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                 </select>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <input type="submit" value="Submit"/>
             </form>    
     </div>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
 </body>
 </html>

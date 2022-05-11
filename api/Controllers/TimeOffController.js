@@ -13,7 +13,7 @@ exports.getTimesOff = (req, res, next) => {
                 items: timeoff,
                 pageTitle: TimeOff,
                 path: '/timeoff_master',
-                isAuthenticated: req.isLoggedIn
+                isAuthenticated: req.session.isLoggedIn
             })
         })
         .catch(err => {
@@ -26,7 +26,7 @@ exports.getTimeOff = (req, res) => {
     return res.render('Timeoff/CreateTimeOff', {
         pageTitle: "Time Off",
         path: '/timeoff',
-        isAuthenticated: req.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn
     })
 }
 
@@ -59,7 +59,7 @@ exports.getTime = (req, res, next) => {
                 item: time,
                 pageTitle: time,
                 path: '/timeoff',
-                isAuthenticated: req.isLoggedIn
+                isAuthenticated: req.session.isLoggedIn
             })
         })
 }
