@@ -14,6 +14,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    password: {
+        type: String,
+        required: true
+    },
     salary: {
         type: Number,
         required: false

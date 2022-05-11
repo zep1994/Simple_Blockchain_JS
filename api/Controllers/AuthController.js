@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const User = require('../Models/User')
 
 exports.getSignUp = (req, res, next) => {
@@ -14,17 +15,24 @@ exports.postSignUp = (req, res, next) => {
     const email = req.body.email
     const password = req.body.password
     const confirmPassword = req.body.confirmPassword
-    User.findById({email: email}) // Check to see if user exists
+    User.findOne({email: email}) // Check to see if user exists
     .then(x => {
         if (x) { // if user exists, redirect to login
-            return res.redirect('/login')
+            return res.redirect('/signup')
         }
-        const user = new User({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            status: "Active"
+        return bcrypt.hash(password, 12)
+        .then(hashedPassword => {
+            const user = new User({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: hashedPassword,
+                status: "Active"
+            })
+            return user.save()
+        })
+        .then(result => {
+            res.redirect('/login')
         })
     })
     .catch(err => {
@@ -46,7 +54,10 @@ exports.postLogin = (req, res, next) => {
         .then(user => {
             req.session.isLoggedIn = true 
             req.session.user = user 
-            res.redirect('/')
+            req.session.save((err) => {
+                console.log(err)
+                res.redirect('/')
+            })
         })
         .catch(err => console.log(err))
 }

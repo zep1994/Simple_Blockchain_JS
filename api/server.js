@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
-    secret: 'my secret',
+    secret: 'This is a very long secret that will need to be changed going forward',
     resave: false,
     saveUninitialized: false,
     store: store
@@ -58,21 +58,6 @@ app.use(AuthRoutes)
 
 mongoose.connect(MONGODB_URI)
   .then(res => {
-    User.findOne().then(user => {
-      if (!user) {
-        const user = new User({
-          firstName: "Thomas",
-          lastName: "Matlock",
-          email: "thomasmatlockbba@gmail.com",
-          salary: "100000",
-          status: "Active",
-          timeoff: {
-            time: []
-          }
-        })
-        user.save()
-      }
-    })
     app.listen(port)
   })
   .catch(err => {
